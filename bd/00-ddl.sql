@@ -66,6 +66,7 @@ MES SMALLINT NOT NULL,
 idPlato INT NOT NULL,
 Monto DECIMAL (5,2) NOT NULL,
 PRIMARY KEY (idResto, idPlato, Anio, MES),
-CONSTRAINT FK_CantPlato FOREIGN KEY (idPlato)
-REFERENCES Menuplato (idPlato)
+CONSTRAINT FK_VentaResto_Plato FOREIGN KEY (idPlato)
+REFERENCES Plato (idPlato)
 );
+ 
