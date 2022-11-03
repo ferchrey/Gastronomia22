@@ -31,23 +31,23 @@ public class MapCliente : Mapeador<Cliente>
     {
         SetComandoSP("registrarCliente");
 
-        BP.CrearParametro("unregistrarCliente")
+        BP.CrearParametro("unidCliente")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
             .SetValor(cliente.idCliente)
             .AgregarParametro();
 
         BP.CrearParametro("unNombre")
-            .SetTipoVarchar(45)
+            .SetTipoVarchar(25)
             .SetValor(cliente.Nombre)
             .AgregarParametro();
 
         BP.CrearParametro("unApellido")
-            .SetTipoVarchar(35)
+            .SetTipoVarchar(25)
             .SetValor(cliente.Apellido)
             .AgregarParametro();
 
         BP.CrearParametro("unEmailCliente")
-            .SetTipoVarchar(25)
+            .SetTipoVarchar(45)
             .SetValor(cliente.EmailCliente)
             .AgregarParametro();
 

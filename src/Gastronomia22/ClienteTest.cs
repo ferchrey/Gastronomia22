@@ -23,7 +23,7 @@ public class ClienteTest
 
     [Theory]
     [InlineData(1, "alberto")]
-    public void TraerCliente(byte id, string nombre)
+    public void TraerCliente(int id, string nombre)
     {
         var cliente = Ado.ObtenerCliente();
         Assert.Contains(cliente, h => h.idCliente == id && h.Nombre == nombre);
