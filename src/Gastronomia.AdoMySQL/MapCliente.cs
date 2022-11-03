@@ -1,13 +1,13 @@
 ﻿
 using et12.edu.ar.AGBD.Mapeadores;
 using System.Data;
-using src.Gastronomia.core;
+using Gastronomia.core;
 using et12.edu.ar.AGBD.Ado;
-namespace Gastronomia.AdoMySQL;
 
-public class MapHotel : Mapeador<Cliente>
+namespace Gastronomia.AdoMySQL;
+public class MapCliente : Mapeador<Cliente>
 {
-    public MapHotel(AdoAGBD ado) : base(ado)
+    public MapCliente(AdoAGBD ado) : base(ado)
     {
         Tabla = "Cliente";
     }
@@ -61,6 +61,6 @@ public class MapHotel : Mapeador<Cliente>
         var paramidCliente = GetParametro("unidCliente");
         cliente.idCliente = Convert.ToByte(paramidCliente.Value);
     }
-    public List<Cliente> ObtenerCliente() => ColeccionDesdeTabla();
+
 }
 

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gastronomia.core", "Gastron
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gastronomia.AdoMySQL", "Gastronomia.AdoMySQL\Gastronomia.AdoMySQL.csproj", "{E60A972C-F6DA-4C71-BF80-34FF3E98E6ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gastronomia22", "Gastronomia22\Gastronomia22.csproj", "{D36AE363-DE1B-46A7-9B95-7AD89A3EDFEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E60A972C-F6DA-4C71-BF80-34FF3E98E6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E60A972C-F6DA-4C71-BF80-34FF3E98E6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E60A972C-F6DA-4C71-BF80-34FF3E98E6ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D36AE363-DE1B-46A7-9B95-7AD89A3EDFEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D36AE363-DE1B-46A7-9B95-7AD89A3EDFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D36AE363-DE1B-46A7-9B95-7AD89A3EDFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D36AE363-DE1B-46A7-9B95-7AD89A3EDFEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
