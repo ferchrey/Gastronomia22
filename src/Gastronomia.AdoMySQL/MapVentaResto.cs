@@ -7,24 +7,23 @@ using et12.edu.ar.AGBD.Ado;
 namespace Gastronomia.AdoMySQL;
 public class MapVentaResto : Mapeador<VentaResto>
 {
-    public MapMenuplato MapMenuplato { get; set; }
+    public MapPlato MapPlato { get; set; }
     public MapVentaResto(AdoAGBD ado) : base(ado)
     {
         Tabla = "VentaResto";
     }
-    public MapVentaResto(MapMenuplato mapMenuplato) : this(mapMenuplato.AdoAGBD)
+    public MapVentaResto(MapPlato mapPlato) : this(mapPlato.AdoAGBD)
     {
-        MapMenuplato = mapMenuplato;
+        MapPlato = mapPlato;
     }
     public override VentaResto ObjetoDesdeFila(DataRow fila)
         => new VentaResto()
         {
-            idResto = Convert.ToInt16(fila["idVentaResto"]),
-            Anio = Convert.ToUInt16(fila["nombre"]),
-            MES = Convert.ToByte(fila["Descripcion"]),
-            idPlato = MapMenuplato.MenuplatoPorId(Convert.ToInt16(fila["a"])),
-            PrecioUnitario = Convert.ToDecimal(fila["PrecioUnitario"]),
-            Disponible = Convert.ToBoolean(fila["Disponible"])
+            idResto = Convert.ToInt16(fila["idResto"]),
+            Anio = Convert.ToUInt16(fila["Anio"]),
+            MES = Convert.ToByte(fila["MES"]),
+            idPlato = MapPlato.PlatoPorId(Convert.ToInt16(fila["idPlato"])),
+            Monto = Convert.ToDecimal(fila["Monto"])
 
         };
 
@@ -37,34 +36,29 @@ public class MapVentaResto : Mapeador<VentaResto>
     {
         SetComandoSP("altaVentaResto");
 
-        BP.CrearParametro("unidVentaResto")
+        BP.CrearParametro("unidResto")
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int16)
+            .SetValor(ventaresto.idResto)
+            .AgregarParametro();
+
+        BP.CrearParametro("unAnio")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
-            .SetValor(ventaresto.idVentaResto)
+            .SetValor(ventaresto.Anio)
             .AgregarParametro();
 
-        BP.CrearParametro("unnombre")
-            .SetTipoVarchar(25)
-            .SetValor(ventaresto.Nombre)
-            .AgregarParametro();
-
-        BP.CrearParametro("unDescripcion")
-            .SetTipoVarchar(45)
-            .SetValor(ventaresto.Descripcion)
-            .AgregarParametro();
-
-        BP.CrearParametro("unPrecioUnitario")
-            .SetTipoDecimal(7, 2)
-            .SetValor(ventaresto.PrecioUnitario)
-            .AgregarParametro();
-
-        BP.CrearParametro("unidRestaurant")
+        BP.CrearParametro("unMES")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
-            .SetValor(ventaresto.idRestaurant.idRestaurant)
+            .SetValor(ventaresto.MES)
             .AgregarParametro();
 
-        BP.CrearParametro("unDisponible")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
-            .SetValor(ventaresto.Disponible)
+        BP.CrearParametro("unidPlato")
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int16)
+            .SetValor(ventaresto.idPlato.idPlato)
+            .AgregarParametro();
+
+        BP.CrearParametro("unMonto")
+            .SetTipoDecimal(5, 2)
+            .SetValor(ventaresto.Monto)
             .AgregarParametro();
     }
 

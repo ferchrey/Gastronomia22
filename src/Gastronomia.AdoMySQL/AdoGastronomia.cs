@@ -11,6 +11,7 @@ public class AdoGastronomia : IAdo
     public MapPedido MapPedido { get; set; }
     public MapPlato MapPlato { get; set; }
     public MapMenuplato MapMenuplato { get; set; }
+    public MapVentaResto MapVentaResto { get; set; }
     public AdoGastronomia(AdoAGBD ado)
     {
         Ado = ado;
@@ -19,6 +20,7 @@ public class AdoGastronomia : IAdo
         MapPedido = new MapPedido(MapRestaurant, MapCliente);
         MapPlato = new MapPlato(MapRestaurant);
         MapMenuplato = new MapMenuplato(MapPedido, MapPlato);
+        MapVentaResto = new MapVentaResto(MapPlato);
     }
     public void AltaCliente(Cliente cliente) => MapCliente.registrarCliente(cliente);
 
@@ -45,6 +47,9 @@ public class AdoGastronomia : IAdo
 
     public void altaMenuplato(Menuplato menuplato) => MapMenuplato.altaMenuplato(menuplato);
     public List<Menuplato> ObtenerMenuplato() => MapMenuplato.ColeccionDesdeTabla();
-    public Menuplato? ObtenerMenuplatoPorId(byte id)
+    public Menuplato? ObtenerMenuplatoPorId(int id)
         => MapMenuplato.FiltrarPorPK("idPedido", id);
+
+    public void altaVentaResto(VentaResto ventaResto) => MapVentaResto.altaVentaResto(ventaResto);
+    public List<VentaResto> ObtenerVentaResto() => MapVentaResto.ColeccionDesdeTabla();
 }
