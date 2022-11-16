@@ -6,13 +6,13 @@ namespace Gastronomia22.AdoMySQLTest;
 
 public class ClienteTest
 {
-    public AdoCliente Ado { get; set; }
+    public AdoGastronomia Ado { get; set; }
     public ClienteTest()
     {
         var adoAGBD = FactoryAdoAGBD.GetAdoMySQL("appSettings.json", "test");
-        Ado = new AdoCliente(adoAGBD);
+        Ado = new AdoGastronomia(adoAGBD);
     }
-    
+
     [Fact]
     public void registrarCliente()
     {
@@ -25,7 +25,7 @@ public class ClienteTest
     [InlineData(1, "alberto")]
     public void TraerCliente(int id, string nombre)
     {
-        var cliente = Ado.ObtenerCliente();
+        var cliente = Ado.ObtenerClientes();
         Assert.Contains(cliente, h => h.idCliente == id && h.Nombre == nombre);
     }
 }

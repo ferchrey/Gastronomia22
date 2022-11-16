@@ -4,15 +4,15 @@ using Gastronomia.core;
 
 namespace Gastronomia22.AdoMySQLTest;
 
-    public class RestaurantTest
-    {
-        public AdoRestaurant Ado { get; set; }
+public class RestaurantTest
+{
+    public AdoGastronomia Ado { get; set; }
     public RestaurantTest()
     {
         var adoAGBD = FactoryAdoAGBD.GetAdoMySQL("appSettings.json", "test");
-        Ado = new AdoRestaurant(adoAGBD);
+        Ado = new AdoGastronomia(adoAGBD);
     }
-    
+
     [Fact]
     public void altaRestaurant()
     {
@@ -28,4 +28,4 @@ namespace Gastronomia22.AdoMySQLTest;
         var restaurant = Ado.ObtenerRestaurant();
         Assert.Contains(restaurant, h => h.idRestaurant == id && h.Nombrer == nombre);
     }
-    }
+}

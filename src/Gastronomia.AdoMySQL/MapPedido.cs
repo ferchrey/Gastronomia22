@@ -7,9 +7,13 @@ namespace Gastronomia.AdoMySQL;
 public class MapPedido : Mapeador<Pedido>
 {
     public MapRestaurant MapRestaurant { get; set; }
+    public MapCliente MapCliente { get; set; }
     public MapPedido(AdoAGBD ado) : base(ado) => Tabla = "Pedido";
-    public MapPedido(MapRestaurant mapRestaurant) : this(mapRestaurant.AdoAGBD)
-            => MapRestaurant = mapRestaurant;
+    public MapPedido(MapRestaurant mapRestaurant, MapCliente mapCliente) : this(mapRestaurant.AdoAGBD)
+    {
+        MapRestaurant = mapRestaurant;
+        MapCliente = mapCliente;
+    }
 
     public override Pedido ObjetoDesdeFila(DataRow fila)
         => new Pedido()
@@ -17,7 +21,7 @@ public class MapPedido : Mapeador<Pedido>
             idPedido = Convert.ToByte(fila["idPedido"]),
             FechayHora = Convert.ToDateTime(fila["FechayHora"]),
             Restaurant = MapRestaurant.RestaurantPorId(Convert.ToByte(fila["idRestaurant"])),
-            idCliente = Convert.ToInt16(fila["idCLiente"]),
+            idCliente = MapCliente.ClientePorId(Convert.ToUInt16(fila["idCliente"])),
             PrecioUnitario = Convert.ToDecimal(fila["PrecioUnitario"]),
             Valoracion = Convert.ToByte(fila["Valoracion"]),
             Descripcion = Convert.ToString(fila["Descripcion"])
@@ -37,34 +41,34 @@ public class MapPedido : Mapeador<Pedido>
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
             .SetValor(pedido.idPedido)
             .AgregarParametro();
-        
+
         BP.CrearParametro("unFechayHora")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.DateTime)
             .SetValor(pedido.FechayHora)
             .AgregarParametro();
-        
+
         BP.CrearParametro("unidRestaurant")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
             .SetValor(pedido.Restaurant.idRestaurant)
             .AgregarParametro();
-        
+
         BP.CrearParametro("unidCliente")
-            .SetTipoDecimal(7, 2)
-            .SetValor(pedido.idCliente)
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
+            .SetValor(pedido.idCliente.idCliente)
             .AgregarParametro();
 
         BP.CrearParametro("unPrecioUnitario")
-            .SetTipoVarchar(60)
+            .SetTipoDecimal(5, 2)
             .SetValor(pedido.PrecioUnitario)
             .AgregarParametro();
 
-        BP.CrearParametro("unValoracion")
-            .SetTipoVarchar(60)
-            .SetValor(pedido.Valoracion)
+        BP.CrearParametro("unDescripcion")
+            .SetTipoVarchar(45)
+            .SetValor(pedido.Descripcion)
             .AgregarParametro();
 
         BP.CrearParametro("unValoracion")
-            .SetTipoVarchar(60)
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
             .SetValor(pedido.Valoracion)
             .AgregarParametro();
 
