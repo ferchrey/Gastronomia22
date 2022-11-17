@@ -1,3 +1,5 @@
+-- Active: 1646654372192@@127.0.0.1@3306@gastronomia
+
 DROP DATABASE IF EXISTS Gastronomia;
 
 CREATE DATABASE Gastronomia;
