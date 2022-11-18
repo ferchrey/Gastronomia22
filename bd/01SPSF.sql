@@ -69,7 +69,7 @@ CREATE FUNCTION gananciaResto (unidRestaurante SMALLINT,
    
 BEGIN
   DECLARE resultado FLOAT;
-  SELECT  SUM (CantPlato * Plato.precioUnitario ) INTO resultado
+  SELECT  SUM(CantPlato * Plato.precioUnitario ) INTO resultado
   FROM Menuplato
   JOIN Plato on Plato.IdPlato = Menuplato.IdPlato
   JOIN Pedido on Pedido.IdPedido = Menuplato.IdPedido
@@ -169,7 +169,7 @@ CREATE FUNCTION gananciaResto (unidRestaurante SMALLINT,
    
 BEGIN
   DECLARE resultado FLOAT;
-  SELECT  SUM (CantPlato * Plato.precioUnitario ) INTO resultado
+  SELECT  SUM(CantPlato * Plato.precioUnitario ) INTO resultado
   FROM Menuplato
   JOIN Plato on Plato.IdPlato = Menuplato.IdPlato
   JOIN Pedido on Pedido.IdPedido = Menuplato.IdPedido
